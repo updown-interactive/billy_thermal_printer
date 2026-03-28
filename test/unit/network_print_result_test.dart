@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_thermal_printer/network/network_print_result.dart';
+import 'package:billy_thermal_printer/network/network_print_result.dart';
 
 void main() {
   group('NetworkPrintResult', () {

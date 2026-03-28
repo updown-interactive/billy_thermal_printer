@@ -1,58 +1,58 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_thermal_printer/flutter_thermal_printer_method_channel.dart';
-import 'package:flutter_thermal_printer/flutter_thermal_printer_platform_interface.dart';
-import 'package:flutter_thermal_printer/utils/printer.dart';
+import 'package:billy_thermal_printer/billy_thermal_printer_method_channel.dart';
+import 'package:billy_thermal_printer/billy_thermal_printer_platform_interface.dart';
+import 'package:billy_thermal_printer/utils/printer.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockFlutterThermalPrinterPlatform extends FlutterThermalPrinterPlatform
+class MockBillyThermalPrinterPlatform extends BillyThermalPrinterPlatform
     with MockPlatformInterfaceMixin {
   @override
   Future<String?> getPlatformVersion() async => 'Mock Platform';
 }
 
-class InvalidPlatform extends FlutterThermalPrinterPlatform {}
+class InvalidPlatform extends BillyThermalPrinterPlatform {}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('FlutterThermalPrinterPlatform', () {
-    late FlutterThermalPrinterPlatform originalInstance;
+  group('BillyThermalPrinterPlatform', () {
+    late BillyThermalPrinterPlatform originalInstance;
 
     setUp(() {
-      originalInstance = FlutterThermalPrinterPlatform.instance;
+      originalInstance = BillyThermalPrinterPlatform.instance;
     });
 
     tearDown(() {
-      FlutterThermalPrinterPlatform.instance = originalInstance;
+      BillyThermalPrinterPlatform.instance = originalInstance;
     });
 
-    test('default instance is MethodChannelFlutterThermalPrinter', () {
+    test('default instance is MethodChannelBillyThermalPrinter', () {
       expect(
-        FlutterThermalPrinterPlatform.instance,
-        isA<MethodChannelFlutterThermalPrinter>(),
+        BillyThermalPrinterPlatform.instance,
+        isA<MethodChannelBillyThermalPrinter>(),
       );
     });
 
     test('can set custom instance with valid token', () {
-      final mockPlatform = MockFlutterThermalPrinterPlatform();
-      FlutterThermalPrinterPlatform.instance = mockPlatform;
+      final mockPlatform = MockBillyThermalPrinterPlatform();
+      BillyThermalPrinterPlatform.instance = mockPlatform;
 
-      expect(FlutterThermalPrinterPlatform.instance, mockPlatform);
+      expect(BillyThermalPrinterPlatform.instance, mockPlatform);
     });
 
     test('InvalidPlatform can be created but lacks MockPlatformInterfaceMixin',
         () {
       final invalidPlatform = InvalidPlatform();
-      expect(invalidPlatform, isA<FlutterThermalPrinterPlatform>());
+      expect(invalidPlatform, isA<BillyThermalPrinterPlatform>());
     });
 
     group('unimplemented methods throw UnimplementedError', () {
-      late FlutterThermalPrinterPlatform basePlatform;
+      late BillyThermalPrinterPlatform basePlatform;
 
       setUp(() {
-        basePlatform = MockFlutterThermalPrinterPlatform();
+        basePlatform = MockBillyThermalPrinterPlatform();
       });
 
       test('startUsbScan throws UnimplementedError', () async {
@@ -130,5 +130,5 @@ void main() {
   });
 }
 
-class _BasePlatformForTest extends FlutterThermalPrinterPlatform
+class _BasePlatformForTest extends BillyThermalPrinterPlatform
     with MockPlatformInterfaceMixin {}

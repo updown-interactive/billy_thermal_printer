@@ -1,6 +1,7 @@
 Note: This license has also been called the “New BSD License” or “Modified BSD License”. See also the 2-clause BSD License.
 
 Copyright 2023 @sunilflutter.in
+(This package was formerly known as flutter_thermal_printer)
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 

@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class FlutterThermalPrinterPlugin: NSObject, FlutterPlugin {
+public class BillyThermalPrinterPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "flutter_thermal_printer", binaryMessenger: registrar.messenger())
-    let instance = FlutterThermalPrinterPlugin()
+    let channel = FlutterMethodChannel(name: "billy_thermal_printer", binaryMessenger: registrar.messenger())
+    let instance = BillyThermalPrinterPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

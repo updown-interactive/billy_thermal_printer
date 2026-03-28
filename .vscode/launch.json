@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutter_thermal_printer",
+            "name": "billy_thermal_printer",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "flutter_thermal_printer (profile mode)",
+            "name": "billy_thermal_printer (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "flutter_thermal_printer (release mode)",
+            "name": "billy_thermal_printer (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

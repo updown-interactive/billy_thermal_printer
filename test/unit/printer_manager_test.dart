@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_thermal_printer/flutter_thermal_printer_platform_interface.dart';
-import 'package:flutter_thermal_printer/printer_manager.dart';
-import 'package:flutter_thermal_printer/utils/ble_config.dart';
-import 'package:flutter_thermal_printer/utils/printer.dart';
+import 'package:billy_thermal_printer/billy_thermal_printer_platform_interface.dart';
+import 'package:billy_thermal_printer/printer_manager.dart';
+import 'package:billy_thermal_printer/utils/ble_config.dart';
+import 'package:billy_thermal_printer/utils/printer.dart';
 
 import '../mocks/mock_platform.dart';
 
@@ -12,17 +12,17 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('PrinterManager', () {
-    late MockFlutterThermalPrinterPlatform mockPlatform;
-    late FlutterThermalPrinterPlatform originalPlatform;
+    late MockBillyThermalPrinterPlatform mockPlatform;
+    late BillyThermalPrinterPlatform originalPlatform;
 
     setUp(() {
-      originalPlatform = FlutterThermalPrinterPlatform.instance;
-      mockPlatform = MockFlutterThermalPrinterPlatform();
-      FlutterThermalPrinterPlatform.instance = mockPlatform;
+      originalPlatform = BillyThermalPrinterPlatform.instance;
+      mockPlatform = MockBillyThermalPrinterPlatform();
+      BillyThermalPrinterPlatform.instance = mockPlatform;
     });
 
     tearDown(() {
-      FlutterThermalPrinterPlatform.instance = originalPlatform;
+      BillyThermalPrinterPlatform.instance = originalPlatform;
       mockPlatform.reset();
     });
 

@@ -1,56 +1,56 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_thermal_printer/flutter_thermal_printer.dart';
-import 'package:flutter_thermal_printer/flutter_thermal_printer_platform_interface.dart';
-import 'package:flutter_thermal_printer/utils/printer.dart';
+import 'package:billy_thermal_printer/billy_thermal_printer.dart';
+import 'package:billy_thermal_printer/billy_thermal_printer_platform_interface.dart';
+import 'package:billy_thermal_printer/utils/printer.dart';
 
 import '../mocks/mock_platform.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('FlutterThermalPrinter', () {
-    late MockFlutterThermalPrinterPlatform mockPlatform;
-    late FlutterThermalPrinterPlatform originalPlatform;
+  group('BillyThermalPrinter', () {
+    late MockBillyThermalPrinterPlatform mockPlatform;
+    late BillyThermalPrinterPlatform originalPlatform;
 
     setUp(() {
-      originalPlatform = FlutterThermalPrinterPlatform.instance;
-      mockPlatform = MockFlutterThermalPrinterPlatform();
-      FlutterThermalPrinterPlatform.instance = mockPlatform;
+      originalPlatform = BillyThermalPrinterPlatform.instance;
+      mockPlatform = MockBillyThermalPrinterPlatform();
+      BillyThermalPrinterPlatform.instance = mockPlatform;
     });
 
     tearDown(() {
-      FlutterThermalPrinterPlatform.instance = originalPlatform;
+      BillyThermalPrinterPlatform.instance = originalPlatform;
       mockPlatform.reset();
     });
 
     group('singleton', () {
       test('instance returns same object every time', () {
-        final instance1 = FlutterThermalPrinter.instance;
-        final instance2 = FlutterThermalPrinter.instance;
-        final instance3 = FlutterThermalPrinter.instance;
+        final instance1 = BillyThermalPrinter.instance;
+        final instance2 = BillyThermalPrinter.instance;
+        final instance3 = BillyThermalPrinter.instance;
 
         expect(identical(instance1, instance2), true);
         expect(identical(instance2, instance3), true);
       });
 
-      test('instance is FlutterThermalPrinter type', () {
-        expect(FlutterThermalPrinter.instance, isA<FlutterThermalPrinter>());
+      test('instance is BillyThermalPrinter type', () {
+        expect(BillyThermalPrinter.instance, isA<BillyThermalPrinter>());
       });
     });
 
     group('streams', () {
       test('devicesStream is a broadcast stream', () {
-        final stream = FlutterThermalPrinter.instance.devicesStream;
+        final stream = BillyThermalPrinter.instance.devicesStream;
         expect(stream.isBroadcast, true);
       });
 
       test('devicesStream emits List<Printer>', () async {
-        final stream = FlutterThermalPrinter.instance.devicesStream;
+        final stream = BillyThermalPrinter.instance.devicesStream;
         expect(stream, isA<Stream<List<Printer>>>());
       });
 
       test('isBleTurnedOnStream is available', () {
-        final stream = FlutterThermalPrinter.instance.isBleTurnedOnStream;
+        final stream = BillyThermalPrinter.instance.isBleTurnedOnStream;
         expect(stream, isA<Stream<bool>>());
       });
     });
@@ -58,7 +58,7 @@ void main() {
     group('connect', () {
       test('returns false for printer with null connection type', () async {
         final printer = Printer(name: 'Test');
-        final result = await FlutterThermalPrinter.instance.connect(printer);
+        final result = await BillyThermalPrinter.instance.connect(printer);
         expect(result, false);
       });
 
@@ -67,7 +67,7 @@ void main() {
           name: 'Test',
           connectionType: ConnectionType.BLE,
         );
-        final result = await FlutterThermalPrinter.instance.connect(printer);
+        final result = await BillyThermalPrinter.instance.connect(printer);
         expect(result, false);
       });
     });
@@ -75,7 +75,7 @@ void main() {
     group('disconnect', () {
       test('handles null connection type gracefully', () async {
         final printer = Printer(name: 'Test');
-        await FlutterThermalPrinter.instance.disconnect(printer);
+        await BillyThermalPrinter.instance.disconnect(printer);
       });
 
       test('handles USB printer', () async {
@@ -85,20 +85,20 @@ void main() {
           vendorId: '123',
           productId: '456',
         );
-        await FlutterThermalPrinter.instance.disconnect(printer);
+        await BillyThermalPrinter.instance.disconnect(printer);
       });
     });
 
     group('stopScan', () {
       test('can be called without error', () async {
-        await FlutterThermalPrinter.instance.stopScan();
+        await BillyThermalPrinter.instance.stopScan();
       });
     });
 
     group('getPrinters', () {
       test('throws when empty connectionTypes provided', () async {
         expect(
-          () => FlutterThermalPrinter.instance.getPrinters(connectionTypes: []),
+          () => BillyThermalPrinter.instance.getPrinters(connectionTypes: []),
           throwsException,
         );
       });
@@ -106,7 +106,7 @@ void main() {
 
     group('bleConfig', () {
       test('has default config with 10 second delay', () {
-        final config = FlutterThermalPrinter.instance.bleConfig;
+        final config = BillyThermalPrinter.instance.bleConfig;
         expect(
           config.connectionStabilizationDelay,
           const Duration(seconds: 10),
@@ -114,23 +114,23 @@ void main() {
       });
 
       test('bleConfig setter updates the configuration', () {
-        final originalConfig = FlutterThermalPrinter.instance.bleConfig;
+        final originalConfig = BillyThermalPrinter.instance.bleConfig;
 
-        FlutterThermalPrinter.instance.bleConfig =
+        BillyThermalPrinter.instance.bleConfig =
             const BleConfig(connectionStabilizationDelay: Duration(seconds: 5));
 
-        final newConfig = FlutterThermalPrinter.instance.bleConfig;
+        final newConfig = BillyThermalPrinter.instance.bleConfig;
         expect(
           newConfig.connectionStabilizationDelay,
           const Duration(seconds: 5),
         );
 
-        FlutterThermalPrinter.instance.bleConfig = originalConfig;
+        BillyThermalPrinter.instance.bleConfig = originalConfig;
       });
 
       test('bleConfig getter returns current config', () {
-        final config1 = FlutterThermalPrinter.instance.bleConfig;
-        final config2 = FlutterThermalPrinter.instance.bleConfig;
+        final config1 = BillyThermalPrinter.instance.bleConfig;
+        final config2 = BillyThermalPrinter.instance.bleConfig;
         expect(
           config1.connectionStabilizationDelay,
           config2.connectionStabilizationDelay,
@@ -175,8 +175,8 @@ void main() {
       expect(column, isNotNull);
     });
 
-    test('FlutterThermalPrinterNetwork is exported', () {
-      final network = FlutterThermalPrinterNetwork('127.0.0.1');
+    test('BillyThermalPrinterNetwork is exported', () {
+      final network = BillyThermalPrinterNetwork('127.0.0.1');
       expect(network, isNotNull);
     });
 

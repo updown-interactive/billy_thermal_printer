@@ -9,7 +9,7 @@ import 'package:universal_ble/universal_ble.dart';
 
 import 'Windows/windows_platform.dart'
     if (dart.library.html) 'Windows/windows_stub.dart';
-import 'flutter_thermal_printer_platform_interface.dart';
+import 'billy_thermal_printer_platform_interface.dart';
 import 'utils/ble_config.dart';
 import 'utils/printer.dart';
 
@@ -43,7 +43,7 @@ class PrinterManager {
   bool _isBleStateSyncInProgress = false;
   static const Duration _bleStateSyncInterval = Duration(seconds: 3);
 
-  static const String _channelName = 'flutter_thermal_printer/events';
+  static const String _channelName = 'billy_thermal_printer/events';
   final EventChannel _eventChannel = const EventChannel(_channelName);
 
   final List<Printer> _devices = [];
@@ -104,7 +104,7 @@ class PrinterManager {
         // Windows USB connection - device is already available, no connection needed
         return true;
       } else {
-        return FlutterThermalPrinterPlatform.instance.connect(device);
+        return BillyThermalPrinterPlatform.instance.connect(device);
       }
     } else if (device.connectionType == ConnectionType.BLE) {
       try {
@@ -178,7 +178,7 @@ class PrinterManager {
         // For Windows USB printers, they're always "connected" if they're available
         return true;
       } else {
-        return FlutterThermalPrinterPlatform.instance.isConnected(device);
+        return BillyThermalPrinterPlatform.instance.isConnected(device);
       }
     } else if (device.connectionType == ConnectionType.BLE) {
       try {
@@ -237,13 +237,13 @@ class PrinterManager {
       } else {
         // Non-Windows USB printing
         try {
-          await FlutterThermalPrinterPlatform.instance.printText(
+          await BillyThermalPrinterPlatform.instance.printText(
             printer,
             Uint8List.fromList(bytes),
             path: printer.address,
           );
         } catch (e) {
-          log('FlutterThermalPrinter: Unable to Print Data $e');
+          log('BillyThermalPrinter: Unable to Print Data $e');
         }
       }
     } else if (printer.connectionType == ConnectionType.BLE) {
@@ -353,7 +353,7 @@ class PrinterManager {
       } else {
         // Non-Windows USB printer discovery
         final devices =
-            await FlutterThermalPrinterPlatform.instance.startUsbScan();
+            await BillyThermalPrinterPlatform.instance.startUsbScan();
 
         final usbPrinters = <Printer>[];
         for (final map in devices) {
@@ -366,7 +366,7 @@ class PrinterManager {
             isConnected: false,
           );
           final isConnected =
-              await FlutterThermalPrinterPlatform.instance.isConnected(
+              await BillyThermalPrinterPlatform.instance.isConnected(
             printer,
           );
           usbPrinters.add(printer.copyWith(isConnected: isConnected));
@@ -396,7 +396,7 @@ class PrinterManager {
           _usbSubscription =
               Stream.periodic(refreshDuration, (x) => x).listen((event) async {
             final devices =
-                await FlutterThermalPrinterPlatform.instance.startUsbScan();
+                await BillyThermalPrinterPlatform.instance.startUsbScan();
 
             final usbPrinters = <Printer>[];
             for (final map in devices) {
@@ -409,7 +409,7 @@ class PrinterManager {
                 isConnected: false,
               );
               final isConnected =
-                  await FlutterThermalPrinterPlatform.instance.isConnected(
+                  await BillyThermalPrinterPlatform.instance.isConnected(
                 printer,
               );
               usbPrinters.add(printer.copyWith(isConnected: isConnected));

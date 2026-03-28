@@ -2,8 +2,8 @@ import 'dart:io';
 import 'network_print_result.dart';
 
 /// Optimized network thermal printer with improved connection management
-class FlutterThermalPrinterNetwork {
-  FlutterThermalPrinterNetwork(
+class BillyThermalPrinterNetwork {
+  BillyThermalPrinterNetwork(
     String host, {
     int port = 9100,
     Duration timeout = const Duration(seconds: 5),

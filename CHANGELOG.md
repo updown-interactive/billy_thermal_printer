@@ -14,7 +14,7 @@
   - Fixed Windows stub implementation for better cross-platform compatibility.
 
 * **Documentation**
-  - Added comprehensive DartDoc comments for all public methods in `FlutterThermalPrinter` and `PrinterManager`.
+  - Added comprehensive DartDoc comments for all public methods in `BillyThermalPrinter` and `PrinterManager`.
   - Documented all parameters including `chunkSize`, `connectionStabilizationDelay`, and others.
 
 * **Testing**

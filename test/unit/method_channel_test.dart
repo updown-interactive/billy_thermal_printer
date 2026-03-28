@@ -1,19 +1,19 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_thermal_printer/flutter_thermal_printer_method_channel.dart';
-import 'package:flutter_thermal_printer/utils/printer.dart';
+import 'package:billy_thermal_printer/billy_thermal_printer_method_channel.dart';
+import 'package:billy_thermal_printer/utils/printer.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('MethodChannelFlutterThermalPrinter', () {
-    late MethodChannelFlutterThermalPrinter platform;
-    const channel = MethodChannel('flutter_thermal_printer');
+  group('MethodChannelBillyThermalPrinter', () {
+    late MethodChannelBillyThermalPrinter platform;
+    const channel = MethodChannel('billy_thermal_printer');
 
     final log = <MethodCall>[];
 
     setUp(() {
-      platform = MethodChannelFlutterThermalPrinter();
+      platform = MethodChannelBillyThermalPrinter();
       log.clear();
 
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -232,7 +232,7 @@ void main() {
 
     group('methodChannel', () {
       test('uses correct channel name', () {
-        expect(platform.methodChannel.name, 'flutter_thermal_printer');
+        expect(platform.methodChannel.name, 'billy_thermal_printer');
       });
     });
   });

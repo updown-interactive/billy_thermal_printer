@@ -1,8 +1,8 @@
-name: flutter_thermal_printer
+name: billy_thermal_printer
 description: "Plugin for Flutter to print on thermal printers via ESC/POS commands."
 version: 2.0.1
 homepage: "https://sunilflutter.in/"
-repository: "https://github.com/SunilDevX/flutter_thermal_printer"
+repository: "https://github.com/SunilDevX/billy_thermal_printer"
 
 environment:
   sdk: ">=3.2.3 <4.0.0"
@@ -41,14 +41,14 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.flutter_thermal_printer
-        pluginClass: FlutterThermalPrinterPlugin
+        package: com.example.billy_thermal_printer
+        pluginClass: BillyThermalPrinterPlugin
       ios:
-        pluginClass: FlutterThermalPrinterPlugin
+        pluginClass: BillyThermalPrinterPlugin
       macos:
-        pluginClass: FlutterThermalPrinterPlugin
+        pluginClass: BillyThermalPrinterPlugin
       windows:
-        pluginClass: FlutterThermalPrinterPluginCApi
+        pluginClass: BillyThermalPrinterPluginCApi
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
   #   - assets/image.png

@@ -1,4 +1,6 @@
-# flutter_thermal_printer
+# billy_thermal_printer
+
+Formerly known as **flutter_thermal_printer**.
 
 <img src="https://res.cloudinary.com/daagzbhsu/image/upload/v1735536729/vxobf0gilq0pixfsnjw1.png" />
 
@@ -34,7 +36,7 @@ This plugin is used to print data on thermal printers with ease across multiple 
 | WiFi                           | ✅      | ✅  | ✅    | ✅      |
 
 ```dart
-final _flutterThermalPrinterPlugin = FlutterThermalPrinter.instance;
+final _flutterThermalPrinterPlugin = BillyThermalPrinter.instance;
 
 // Enum ConnectionType
 enum ConnectionType {
@@ -126,17 +128,17 @@ Customize BLE connection behavior to optimize for different printer models:
 
 ```dart
 // Global configuration (applies to all BLE connections)
-FlutterThermalPrinter.instance.bleConfig =
+BillyThermalPrinter.instance.bleConfig =
     BleConfig(connectionStabilizationDelay: Duration(seconds: 3));
 
 // Per-connection override for specific devices
-await FlutterThermalPrinter.instance.connect(
+await BillyThermalPrinter.instance.connect(
   printer,
   connectionStabilizationDelay: Duration(seconds: 2),
 );
 
 // Default behavior (10 seconds) - no configuration needed
-await FlutterThermalPrinter.instance.connect(printer);
+await BillyThermalPrinter.instance.connect(printer);
 ```
 
 | Configuration | Use Case |
@@ -167,7 +169,7 @@ For bug reports or feature requests, feel free to open an issue.
 
 ## Contributors
 
-![Contributors](https://contrib.rocks/image?repo=SunilDevX/flutter_thermal_printer)
+![Contributors](https://contrib.rocks/image?repo=SunilDevX/billy_thermal_printer)
 
 
 Feel free to contribute to this project and help make it better for everyone!

@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 
-import 'package:flutter_thermal_printer/flutter_thermal_printer_platform_interface.dart';
-import 'package:flutter_thermal_printer/utils/printer.dart';
+import 'package:billy_thermal_printer/billy_thermal_printer_platform_interface.dart';
+import 'package:billy_thermal_printer/utils/printer.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockFlutterThermalPrinterPlatform extends FlutterThermalPrinterPlatform
+class MockBillyThermalPrinterPlatform extends BillyThermalPrinterPlatform
     with MockPlatformInterfaceMixin {
   String? platformVersionToReturn = 'Mock Platform 1.0';
   List<Map<String, dynamic>>? usbDevicesToReturn;
