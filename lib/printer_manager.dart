@@ -226,6 +226,7 @@ class PrinterManager {
     List<int> bytes, {
     bool longData = false,
     int? chunkSize,
+    int chunkDelayMs = 10,
   }) async {
     if (printer.connectionType == ConnectionType.USB) {
       if (Platform.isWindows) {
@@ -284,7 +285,7 @@ class PrinterManager {
 
           // Small delay between chunks to avoid overwhelming the device
           if (longData) {
-            await Future.delayed(const Duration(milliseconds: 10));
+            await Future.delayed(Duration(milliseconds: chunkDelayMs));
           }
 
           ///

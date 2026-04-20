@@ -95,6 +95,7 @@ class BillyThermalPrinter {
     List<int> bytes, {
     bool longData = false,
     int? chunkSize,
+    int chunkDelayMs = 10,
   }) async =>
       PrinterManager.instance.printData(
         device,
@@ -106,6 +107,7 @@ class BillyThermalPrinter {
         /// [androidUsesFineLocation] Whether to use fine location on Android for BLE scanning.
         longData: longData,
         chunkSize: chunkSize,
+        chunkDelayMs: chunkDelayMs,
       );
 
   /// Get available printers
